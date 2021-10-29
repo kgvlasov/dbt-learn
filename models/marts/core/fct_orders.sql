@@ -1,6 +1,6 @@
 
-    select sc.order_id, sc.customer_id
-    from {{ref('stg_customers')}} sc
+    select sc.order_id, sc.customer_id,sp.amount
+    from {{ref('stg_orders')}} sc
     join 
     (
         select order_id,amount
