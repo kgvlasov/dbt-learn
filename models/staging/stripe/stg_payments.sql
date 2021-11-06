@@ -9,7 +9,7 @@ with payments as (
         created,
         _batched_at
 
-    from jaffle_query.payment
+    from {{ source('jaffle_query', 'payment') }}
 
 )
 

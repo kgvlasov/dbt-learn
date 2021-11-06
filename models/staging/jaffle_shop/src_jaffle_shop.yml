@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: jaffle_query
+    description: copy of database (info)
+    database: dbt-learning-329510
+    tables:
+      - name: customers
+        description: raw data
+        columns:
+            - name: id
+              description: primary key for customers
+              test:
+                - unique
+                - not_null
+      - name: orders
+        loaded_at_field: _etl_loaded_at
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+        columns:
+            - name: id
+              description: primary key for orders
+              test:
+                - unique
+                - not_null
